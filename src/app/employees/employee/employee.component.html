@@ -1,0 +1,78 @@
+<mat-toolbar style="color: whitesmoke; align-content: center;" class="MatToolbar">
+
+    <span >My Angular Application</span>
+    <span class="example-spacer"></span>
+
+    
+</mat-toolbar>
+<div style="margin-top: 10px;">
+    <button (click)="clickAddbutton()" mat-raised-button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add New Employee</button>
+</div>
+
+<table style="border: 1;" class="table  table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Employee ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile number</th>
+            <th scope="col" colspan="2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of empData" >
+            <td>{{emp.id}}</td>
+            <td>{{emp.FirstName}}</td>
+            <td>{{emp.LastName}}</td>
+            <td>{{emp.Email}}</td>
+            <td>{{emp.PhoneNumber}}</td>
+            <td>
+                <button mat-raised-button class="btn btn-primary mx-3 btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit(emp)"> EDIT</button>
+                <button mat-raised-button class="btn btn-danger mx-3 btn-sm" (click)="deleteEmp(emp)">DELETE</button>
+            </td>
+        </tr>
+     
+    </tbody>
+
+</table>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="Empform">
+                    <div class="mb-3">
+                        <label for="FirstName" class="form-label">First Name</label>
+                        <input type="text" formControlName="firstname" class="form-control" id="FirstName" placeholder="Enter First Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="LastName" class="form-label">Last Name</label>
+                        <input type="text" formControlName="lastName" class="form-control" id="LastName" placeholder="Enter Last Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="email" formControlName="email" class="form-control" id="Email" placeholder="Enter email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Phonenumber" class="form-label">Phone number</label>
+                        <input type="text" formControlName="phonenumber" class="form-control" id="Phonenumber" placeholder="Enter Phonenumber">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel">Cancel</button>
+                <button  *ngIf="isAddVisible" type="button" class="btn btn-primary" (click)="addEmp()" id="btnAdd" >ADD</button>
+                <button *ngIf="isUpdateVisible" type="button" class="btn btn-primary" (click)="UpdateEmp()" id="btnUpdate" >Update</button>
+            </div>
+        </div>
+    </div>
+</div>

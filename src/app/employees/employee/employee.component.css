@@ -1,0 +1,8 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .MatToolbar{
+      padding-top: 10px;
+      background-color:darkslategray;
+      padding-bottom: 10px;
+  }
